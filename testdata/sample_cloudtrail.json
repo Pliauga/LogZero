@@ -1,0 +1,40 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROA1234567890EXAMPLE:session-name",
+        "arn": "arn:aws:sts::123456789012:assumed-role/AppRole/session-name"
+      },
+      "eventTime": "2026-09-05T12:00:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetObject",
+      "awsRegion": "us-east-1",
+      "resources": [
+        {
+          "ARN": "arn:aws:s3:::my-app-data-bucket/config.json",
+          "accountId": "123456789012"
+        }
+      ]
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROA1234567890EXAMPLE:session-name",
+        "arn": "arn:aws:sts::123456789012:assumed-role/AppRole/session-name"
+      },
+      "eventTime": "2026-09-05T12:05:00Z",
+      "eventSource": "dynamodb.amazonaws.com",
+      "eventName": "GetItem",
+      "awsRegion": "us-east-1",
+      "resources": [
+        {
+          "ARN": "arn:aws:dynamodb:us-east-1:123456789012:table/ProductionTable",
+          "accountId": "123456789012"
+        }
+      ]
+    }
+  ]
+}

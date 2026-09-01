@@ -1,0 +1,19 @@
+[
+  {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "AssumedRole",
+      "arn": "arn:aws:sts::123456789012:assumed-role/TestRole/session"
+    },
+    "eventTime": "2026-09-05T14:00:00Z",
+    "eventSource": "s3.amazonaws.com",
+    "eventName": "GetObject\"; statement { effect = \"Allow\" } #",
+    "awsRegion": "us-east-1",
+    "resources": [
+      {
+        "ARN": "arn:aws:s3:::target-bucket/data.csv",
+        "resourceType": "AWS::S3::Object"
+      }
+    ]
+  }
+]

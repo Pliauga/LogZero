@@ -1,0 +1,85 @@
+[
+  {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "AssumedRole",
+      "principalId": "AROA123456789EXAMPLE:app-session",
+      "arn": "arn:aws:sts::123456789012:assumed-role/StagingApplicationRole/app-session",
+      "accountId": "123456789012"
+    },
+    "eventTime": "2026-09-05T12:00:00Z",
+    "eventSource": "s3.amazonaws.com",
+    "eventName": "GetObject",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "192.0.2.45",
+    "userAgent": "aws-sdk-go-v2/1.30.0",
+    "requestParameters": {
+      "bucketName": "staging-app-assets",
+      "key": "user-uploads/secret-doc.pdf"
+    },
+    "responseElements": null,
+    "resources": [
+      {
+        "ARN": "arn:aws:s3:::staging-app-assets/user-uploads/secret-doc.pdf",
+        "resourceType": "AWS::S3::Object"
+      }
+    ]
+  },
+  {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "AssumedRole",
+      "arn": "arn:aws:sts::123456789012:assumed-role/StagingApplicationRole/app-session"
+    },
+    "eventTime": "2026-09-05T12:01:15Z",
+    "eventSource": "dynamodb.amazonaws.com",
+    "eventName": "GetItem",
+    "awsRegion": "us-east-1",
+    "requestParameters": {
+      "tableName": "OrdersTable",
+      "key": { "OrderId": { "S": "ORD-99823" } }
+    },
+    "resources": [
+      {
+        "ARN": "arn:aws:dynamodb:us-east-1:123456789012:table/OrdersTable",
+        "resourceType": "AWS::DynamoDB::Table"
+      }
+    ]
+  },
+  {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "AssumedRole",
+      "arn": "arn:aws:sts::123456789012:assumed-role/StagingApplicationRole/app-session"
+    },
+    "eventTime": "2026-09-05T12:02:30Z",
+    "eventSource": "kms.amazonaws.com",
+    "eventName": "Decrypt",
+    "awsRegion": "us-east-1",
+    "resources": [
+      {
+        "ARN": "arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012",
+        "resourceType": "AWS::KMS::Key"
+      }
+    ]
+  },
+  {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "AssumedRole",
+      "arn": "arn:aws:sts::123456789012:assumed-role/StagingApplicationRole/app-session"
+    },
+    "eventTime": "2026-09-05T12:03:00Z",
+    "eventSource": "sqs.amazonaws.com",
+    "eventName": "SendMessage",
+    "errorCode": "AccessDenied",
+    "errorMessage": "User is not authorized to perform: sqs:SendMessage",
+    "awsRegion": "us-east-1",
+    "resources": [
+      {
+        "ARN": "arn:aws:sqs:us-east-1:123456789012:unauthorized-queue",
+        "resourceType": "AWS::SQS::Queue"
+      }
+    ]
+  }
+]

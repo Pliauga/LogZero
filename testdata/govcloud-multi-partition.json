@@ -1,0 +1,31 @@
+[
+  {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "AssumedRole",
+      "arn": "arn:aws-us-gov:sts::987654321098:assumed-role/GovAppRole/session"
+    },
+    "eventTime": "2026-09-05T13:00:00Z",
+    "eventSource": "s3.amazonaws.com",
+    "eventName": "PutObject",
+    "awsRegion": "us-gov-west-1",
+    "resources": [
+      {
+        "ARN": "arn:aws-us-gov:s3:::gov-compliance-vault/logs/*",
+        "resourceType": "AWS::S3::Object"
+      }
+    ]
+  },
+  {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "AssumedRole",
+      "arn": "arn:aws-us-gov:sts::987654321098:assumed-role/GovAppRole/session"
+    },
+    "eventTime": "2026-09-05T13:05:00Z",
+    "eventSource": "secretsmanager.amazonaws.com",
+    "eventName": "GetSecretValue",
+    "awsRegion": "us-gov-west-1",
+    "resources": []
+  }
+]
