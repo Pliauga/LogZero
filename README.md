@@ -10,6 +10,8 @@ It parses AWS IAM policy documents, evaluates syntax and semantic access paths, 
 - **Static Analysis Integration**: Runs natively alongside SAST tools (`gosec`, `govulncheck`).
 - **Structured Output**: Produces deterministic JSON reports for local CLI pipelines.
 
+## Project Status: Active Development 🚧 This project is currently a work in progress. APIs, features, and file structures may change without warning. It is not ready for production use.
+
 ## Quickstart
 
 ### Installation
