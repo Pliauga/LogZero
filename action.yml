@@ -1,0 +1,69 @@
+name: 'logzero-action'
+description: 'Synthesizes tightened, least-privilege Terraform IAM policies from AWS CloudTrail events'
+author: 'logzero team'
+branding:
+  icon: 'shield'
+  color: 'green'
+
+inputs:
+  role-arn:
+    description: 'Target IAM Role ARN or Name to filter CloudTrail events'
+    required: false
+    default: ''
+  time-window:
+    description: 'Lookback duration (e.g. 15m, 30m, 1h, 24h)'
+    required: false
+    default: '1h'
+  file:
+    description: 'Path to offline CloudTrail JSON export/fixture'
+    required: false
+    default: ''
+  output:
+    description: 'Output file path for synthesized Terraform policy'
+    required: false
+    default: 'tightened_policy.tf'
+  format:
+    description: 'Output format: hcl or json'
+    required: false
+    default: 'hcl'
+  name:
+    description: 'Terraform data block identifier name'
+    required: false
+    default: 'tightened_policy'
+  aws-region:
+    description: 'AWS Region override'
+    required: false
+    default: 'us-east-1'
+
+outputs:
+  policy-path:
+    description: 'Path to the generated policy document'
+    value: ${{ inputs.output }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.22'
+
+    - name: Run logzero
+      shell: bash
+      run: |
+        ARGS=""
+        if [ -n "${{ inputs.role-arn }}" ]; then
+          ARGS="$ARGS --role-arn ${{ inputs.role-arn }}"
+        fi
+        if [ -n "${{ inputs.file }}" ]; then
+          ARGS="$ARGS --file ${{ inputs.file }}"
+        else
+          ARGS="$ARGS --time-window ${{ inputs.time-window }}"
+        fi
+        if [ -n "${{ inputs.aws-region }}" ]; then
+          ARGS="$ARGS --region ${{ inputs.aws-region }}"
+        fi
+        ARGS="$ARGS --output ${{ inputs.output }} --format ${{ inputs.format }} --name ${{ inputs.name }}"
+
+        echo "==> Executing: logzero $ARGS"
+        go run ./cmd/logzero $ARGS
