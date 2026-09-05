@@ -1,3 +1,7 @@
+# 🚧 Work in Progress (WIP)
+**Project Status:** This project is currently in active development. 
+Features are incomplete, and things will change or break. Not ready for use!
+
 # LogZero
 
 LogZero is a high-performance, zero-egress IAM policy evaluation and compliance audit engine written in Go.
